@@ -1,0 +1,7 @@
+PS C:\dev\projects\shengli\clinic> docker image build -t clinic:v2 .
+
+docker run -d -p 8080:8080 clinic:v2
+
+http://localhost:8080/index.jsp
+
+
