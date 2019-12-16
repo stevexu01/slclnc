@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Address">
+
+    <typeAlias alias="Address" type="com.shengli.clinic.model.Address"/>
+
+	
+    <resultMap id="addressResult" class="Address">
+        <result property="id" column="id"/>
+        <result property="streetAddress" column="street_address"/>
+        <result property="city" column="city"/>
+        <result property="province" column="province"/>
+        <result property="county" column="county"/>
+        <result property="postalCode" column="postal_code"/>
+        <result property="patientId" column="patient_id"/>
+    </resultMap>
+
+    <select id="getAddressByPersionId" resultMap="addressResult">
+    <![CDATA[
+        SELECT 	street_address, city, province,county, postal_code, patient_id
+        FROM address
+        WHERE patient_id = #patientId#;
+    ]]>
+    </select>
+    
+     <insert id="insertAddress" parameterClass="Address" >
+      <![CDATA[
+	    INSERT INTO address (
+	     	street_address, city, province,county, postal_code, patient_id
+	    )VALUES (
+	        #streetAddress#, #city#, #province#,#county#, #postalCode#, LAST_INSERT_ID()
+	    ) 
+	   ]]>
+    </insert>
+    
+     <update id="updateAddress" parameterClass="Address">
+     <![CDATA[
+       UPDATE address 
+       SET street_address = #streetAddress#, city = #city#, province = #province#, county = #county#, 
+           postal_code = #postalCode#, patient_id = #patientId#
+       WHERE id = #id#
+      ]]>
+    </update> 
+ 
+</sqlMap>

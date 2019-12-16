@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <tr>
+    <td><table width="100%" border="0" cellpadding="5" cellspacing="5" >
+     <tr>
+		<td colspan="3" align="center" class="topmenu"> 河南中医学院医院
+        </td>
+      </tr>
+      
+      <tr>
+		<td colspan="3" align="center" class="topmenusub"> 骨质增生科
+        </td>
+      </tr>
+      
+       <tr>
+		<td height="20">
+        </td>
+      </tr>
+    
+    </table></td>
+  </tr>
+
+
+  <tr>
+    <td>
+      <table width="100%" border="0" cellpadding="0" cellspacing="0" class="row3_menu">
+		  <h:form>
+		      <tr>
+				<td class="row3_menu_left"><h:commandLink class="link"  id="linkSearch" action="#{patientSearchBean.init}" value="首&#160;&#160;&#160;页" /></td>
+		        <td class="row3_menu_middle"><h:commandLink class="link"  id="addLink" action="#{patientBean.addPatient}" value="增加病人" /></td>
+		        <td class="row3_menu_right"><h:commandLink class="link"   id="viePrescription" action="#{prescriptionBean.loadPage}" value="管&#160;&#160;&#160;理" /></td>
+		      </tr>
+		  </h:form>
+      </table>
+    </td>
+  </tr>
+
+
+	
+</ui:composition>

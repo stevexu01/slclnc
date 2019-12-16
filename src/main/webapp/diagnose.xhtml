@@ -1,0 +1,328 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="templates/main.xhtml">
+	
+	<ui:define name="content">
+	
+	<h:form id="form" enctype="#{empty encoding ? 'application/x-www-form-urlencoded' : encoding}">
+		
+   <table width="100%" border="0" align="center" >
+     <tr><td height="10"></td></tr>
+   </table>
+	
+   <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  
+	 <tr>
+	   <td>
+	      <table align="center">
+			  <tr>
+			    <td colspan="7">
+				    <table width="100%" border="0">
+				      <tr>
+				      	<td width="120">&#160;</td>
+				        <td width="60" align="left">编&#160;&#160;&#160;&#160;号:</td>
+				        <td width="200" align="left">&#160;
+				              <h:outputText value="#{diagnoseBean.patient.id}" >
+								   <f:convertNumber type="number" minIntegerDigits="3"/>
+						      </h:outputText></td>
+				        <td>&#160;</td>
+				      </tr>
+				    </table>
+			    </td>
+			  </tr>
+			  
+			  <tr>
+			    <td colspan="7"><table width="100%" border="0">
+			      <tr>
+			    <td width="120">&#160;</td>
+			    <td width="60">姓&#160;&#160;&#160;&#160;名:</td>
+			    <td width="160" align="left">&#160;#{diagnoseBean.patient.lastName}#{diagnoseBean.patient.firstName}</td>
+			    <td width="90" align="left">性&#160;&#160;&#160;&#160;别:</td>
+			    <td width="140" align="left">#{diagnoseBean.patient.gender}</td>
+			    <td width="40">年&#160;&#160;&#160;&#160;龄:</td>
+			    <td width="50" align="left">&#160;&#160;#{diagnoseBean.patient.age}&#160;岁</td>
+			    <td align="left">&#160;</td>
+			   	  </tr>
+			    </table></td>
+			  </tr>
+			
+			 
+			 <tr>
+			    <td colspan="7">
+			    <table width="100%" border="0">
+			      <tr>
+			      <td width="120">&#160;</td>
+			        <td width="60">电&#160;&#160;&#160;&#160;话:</td>
+			        <td width="160" align="left">&#160;#{diagnoseBean.patient.phone}</td>
+			        <td width="90" align="left">初诊日期:</td>
+			        <td width="140" align="left"><h:outputText value="#{diagnoseBean.patient.createdDate }"><f:convertDateTime type="date" locale="zh" dateStyle="long"/></h:outputText></td>
+			        <td width="40">邮&#160;&#160;&#160;&#160;编:</td>
+			        <td width="50" align="left">&#160;&#160;#{diagnoseBean.address.postalCode}</td>
+			        <td align="left">&#160;</td>
+			       
+			      </tr>
+			    </table>
+			    </td>
+			  </tr>
+			 
+			  <tr>
+			    <td colspan="7"><table width="100%" border="0">
+			      <tr>
+			        <td width="120"> </td>
+			        <td width="60">地&#160;&#160;&#160;&#160;址:</td>
+			        <td width="520" align="left">&#160;#{diagnoseBean.address.province} #{diagnoseBean.address.city} #{diagnoseBean.address.county} #{diagnoseBean.address.streetAddress} </td>
+			        <td>&#160;</td>
+			      </tr>
+			    </table></td>
+			  </tr>
+			  
+			  <tr><td colspan="7" height="10"></td></tr>
+			  
+			  <tr>
+			    <td colspan="7"><table width="100%" border="0">
+			      <tr>
+			      <td width="120">&#160;</td>
+			        <td width="90">主要症状：</td>
+			        <td align="left"><label>
+			          <h:inputTextarea id="mainProblem" cols="60" rows="2" class="textarea_input" value="#{diagnoseBean.patient.mainProblem}"/>
+			        </label></td>
+			        
+			      </tr>
+			    </table></td>
+			  </tr>
+			  
+			  <tr>
+			    <td colspan="7"><table width="100%" border="0">
+			      <tr>
+			      <td width="120">&#160;</td>
+			        <td width="90">现&#160;病&#160;史：</td>
+			        <td><label>
+			          <h:inputTextarea id="sickHistory" cols="60" rows="2" class="textarea_input" value="#{diagnoseBean.patient.currentSickHistory}" />
+			        </label></td>
+			      </tr>
+			    </table></td>
+			  </tr>
+			  
+			  <tr>
+			    <td colspan="7"><table width="100%" border="0">
+			      <tr>
+			      <td width="120">&#160;</td>
+			        <td width="90">家&#160;族&#160;史：</td>
+			        <td><label>
+			          <h:inputTextarea id="familyHistory" cols="60" rows="2" class="textarea_input" value="#{diagnoseBean.patient.familySickHistory}"/>
+			        </label></td>
+			      </tr>
+			    </table></td>
+			  </tr>
+			  
+			  <tr>
+			    <td colspan="7"><table width="100%" border="0">
+			      <tr>
+			      <td width="120">&#160;</td>
+			        <td width="90">检&#160;&#160;&#160;&#160;查：</td>
+			        <td><label>
+			          <h:inputTextarea  id="inspect" cols="60" rows="2" class="textarea_input" value="#{diagnoseBean.patient.inspect}"/>
+			        </label></td>
+			      </tr>
+			    </table></td>
+			  </tr>
+			  
+			   <tr>
+			    <td colspan="7"><table width="100%" border="0">
+			      <tr>
+				      <td width="120">&#160;</td>
+				      <td width="90">诊&#160;&#160;&#160;&#160;断：</td>
+				      <td><label>
+				          <h:inputTextarea  id="diagnose" cols="60" rows="2" class="textarea_input" value="#{diagnoseBean.patient.diagnose}"/>
+				        </label>
+				      </td>
+			      </tr>
+			    </table></td>
+			  </tr>
+			  
+			  
+			   <tr>
+			    <td colspan="7"><table width="100%" border="0">
+			      <tr>
+			      <td width="120">&#160;</td>
+			        <td width="90">治&#160;&#160;&#160;&#160;则：</td>
+			        <td><label>
+			          <h:inputTextarea id="treat" cols="60" rows="2" class="textarea_input" value="#{diagnoseBean.patient.therapy}"/>
+			        </label></td>
+			      </tr>
+			    </table></td>
+			  </tr>
+			  
+			  
+			 <tr><td height="20"></td></tr>
+			 </table>
+			 </td>
+			 </tr>
+			 </table>
+			 
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" >			 
+  
+	  <tr>
+	    <td colspan="7">
+	      <table width="100%" border="0">
+	      <tr>
+	      <td width="120"></td>
+	      <td align="left" width="100">治疗方案:&#160;</td>
+	      <td align="left">
+	      <h:selectOneRadio value="#{diagnoseBean.useYangshi}" onclick="submit()" 
+			  valueChangeListener="#{diagnoseBean.valueChanged}" reRender="panel1, panel2, panel3, generalPrescriptionTable">
+		     <f:selectItem id="Yes" itemLabel="杨氏治疗" itemValue="yes" />
+		     <f:selectItem id="No" itemLabel="普通治疗" itemValue="no" />
+	       </h:selectOneRadio>
+	      </td> 
+	     </tr>
+	 </table>
+	 </td>
+	 </tr>
+ 
+ 	<tr><td height="20"></td></tr>
+  
+  <tr>
+    <td colspan="7">
+      <table width="100%" border="0"  >
+      <ui:repeat rendered="#{not diagnoseBean.yangshi}" id="generalPrescription" var="generalPrescription" value="#{diagnoseBean.generalPrescriptions}" >
+      	<tr>
+			<td width="120"></td>
+			<td align="right" width="100"><b>處方：</b>&#160;&#160;</td>
+			<td align="left">
+			<h:outputText value="#{generalPrescription.createdDate}" style="font-weight:bold">
+		      <f:convertDateTime type="date" locale="zh" dateStyle="long"/>
+		    </h:outputText>
+			</td>	          
+      	</tr>
+      	<tr>
+      		<td width="120"></td>
+      	    <td width="100" align="left">&#160;</td>
+      	    <td  align="left"><pre><h:outputText value="#{generalPrescription.htmlText}"  escape="false"/></pre></td>
+      	</tr>
+      	
+      
+      <tr>
+	    <td colspan="3"><table width="100%" border="0">
+	      <tr>
+	      <td width="222">&#160;</td>
+	      <td class="treat_sep_line">
+	      </td>
+	      <td width="120">&#160;</td>
+	      </tr>
+	      </table>
+	    </td>
+	  </tr>
+     
+      	
+      	
+      	<tr><td colspan="3" height="5"></td></tr>
+      </ui:repeat>
+        <tr>
+          <td width="120"></td>
+          <td width="100" align="right"></td>
+          <td align="left">
+			 <h:panelGroup id="panel1" rendered="#{diagnoseBean.yangshi and diagnoseBean.currentSelectedPrescription != null}">
+			     杨氏方药：    
+			     <h:selectOneMenu id="selectOneListBox"  class="nice_input" value="#{diagnoseBean.currentSelectedPrescription.id}" onchange="submit()" 
+			                valueChangeListener="#{diagnoseBean.prescriptionChanged}" reRender="panel2">
+			        <f:selectItems value="#{diagnoseBean.yangshiPrescriptions}" var="option" 
+			            itemLabel="#{option.prescriptionName}" itemValue="#{option.id}"/>
+			            
+			     </h:selectOneMenu>   
+			 </h:panelGroup>
+          </td>
+        </tr>
+  	  </table>
+  	</td>
+  </tr>
+  
+   <tr>
+    <td colspan="7">
+      <table width="100%" border="0" >
+      <tr>
+      <td width="120"></td>
+      <td align="left" width="80">
+         <h:commandLink rendered="#{not diagnoseBean.yangshi and diagnoseBean.newGeneralPrescription == null}" class="link" reRender="generalPrescriptionTable"   id="addNewGeneralbutton" action="#{diagnoseBean.addNewGeneral}" value="加药物" />
+      </td>
+      <td align="left">&#160;</td>
+      </tr>
+      <tr>
+        <td width="120"></td>
+        <td width="80" align="right">&#160;</td>
+        <td align="left" >
+           <h:panelGroup id="panel3" rendered="#{not diagnoseBean.yangshi and diagnoseBean.newGeneralPrescription != null}">
+      药物：<h:inputTextarea id="newTreat" cols="60" rows="2" class="textarea_input" value="#{diagnoseBean.newGeneralPrescription.prescriptionText}"/>
+  </h:panelGroup>
+        </td>
+      </tr>
+      </table>
+    </td>
+   </tr>
+   
+   </table>
+   
+   
+   <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" >
+ 
+  
+   
+<tr><td width="120"></td><td colspan="6">
+
+	<h:panelGroup id="panel2" rendered="#{diagnoseBean.yangshi}" align="right">
+		<table border="2" cellpadding="2" width="100%">
+		<ui:repeat id="yangshiProcesseTable" var="yangshiProcess" value="#{diagnoseBean.yangshiProcesses}">
+		<tr>
+		   <th rowspan="2">疗程#{yangshiProcess.orderNum}</th>
+		   
+		   <ui:repeat value="#{yangshiProcess.subProcesses}" var="sub">
+		   <td align="center" style="padding:1px 25px 1px 25px; background-color: #CEF6F5; "><h:outputText value="#{sub.orderNum}"/></td>
+		   </ui:repeat>
+		   <td></td>
+		</tr>
+		   <ui:repeat value="#{yangshiProcess.subProcesses}" var="sub2">
+		   <td align="center">
+		       <h:outputText value="#{sub2.processValue}" rendered="#{not sub2.editMode}">
+		       </h:outputText>
+		       
+		        <h:commandLink id="recover" rendered="#{not sub2.editMode and sub2.recoverable}" reRender="panel2" action="#{diagnoseBean.recoverSubProcess}"  >
+		               <h:graphicImage id="image" alt="recover" url="/img/delete3.jpg" style="border: 0px; margin-left:5px;" width="10" height="10"></h:graphicImage>  
+		               <f:param name="subProcessId" value="#{sub2.id}" />
+		               <f:param name="processId" value="#{yangshiProcess.id}" />
+		        </h:commandLink>
+		           
+		       <h:inputText class="xsmall_input" value="#{sub2.processValue}" rendered="#{sub2.editMode}"/></td>
+		   </ui:repeat>
+		    <td ><h:commandLink id="save" action="#{diagnoseBean.saveProcess}" rendered="#{yangshiProcess.finished ==0 }" value="保存" /></td>
+		<tr>
+		   
+		</tr>
+		</ui:repeat>
+		
+		</table>
+	</h:panelGroup>
+</td></tr>		
+
+ <tr><td height="10"></td></tr>
+</table>
+
+<table width="50%" border="0" align="center" cellpadding="0" cellspacing="0" >
+<tr>
+	<td align="center">
+	<h:commandButton class="button"  id="backButton" action="#{patientSearchBean.getAllpatient}" value="回前页" />
+		&#160;&#160;&#160;
+	  <h:commandButton class="button"  id="saveButton" action="#{diagnoseBean.saveDiagnose}" value="保&#160;存" />
+	</td>	
+ </tr>
+ 
+ </table>
+ 
+ 
+
+</h:form>
+	
+	
+</ui:define>
+	
+</ui:composition>

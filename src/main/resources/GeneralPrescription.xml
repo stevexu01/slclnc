@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="GeneralPrescription">
+
+    <typeAlias alias="GeneralPrescription" type="com.shengli.clinic.model.GeneralPrescription"/>
+
+    <resultMap id="generalPrescriptionResult" class="GeneralPrescription">
+        <result property="id" column="id"/>
+        <result property="prescriptionText" column="prescription_text"/>
+        <result property="createdDate" column="created_date"/>
+        <result property="patientId" column="patient_id"/>
+    </resultMap>
+
+    <select id="getGeneralPrescriptionsByPatientId" resultMap="generalPrescriptionResult">
+	    <![CDATA[
+	        SELECT id, prescription_text, created_date, patient_id
+	        FROM general_prescription
+	        WHERE patient_id = #patientId#;
+	    ]]>
+    </select>
+    
+    <insert id="insertGeneralPrescription" parameterClass="GeneralPrescription">
+      <![CDATA[
+	    INSERT INTO general_prescription (
+	      prescription_text,
+	      created_date,
+	      patient_id
+	    )VALUES (
+	      #prescriptionText#, now(), #patientId# 
+	    )
+	   ]]>
+    </insert>
+    
+    <update id="updateGeneralPrescriptionBypatientId" parameterClass="GeneralPrescription">
+     <![CDATA[
+       UPDATE general_prescription 
+       SET prescription_text = #prescriptionText#
+       WHERE patient_id = #patientId#
+      ]]>
+    </update> 
+ 
+</sqlMap>

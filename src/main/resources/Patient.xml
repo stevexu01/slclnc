@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Patient">
+
+    <typeAlias alias="patient" type="com.shengli.clinic.model.Patient"/>   
+    <typeAlias alias="Address" type="com.shengli.clinic.model.Address"/>    
+    
+    <resultMap id="patientResult" class="patient">
+        <result property="id" column="id"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="gender" column="gender"/>
+        <result property="age" column="age"/>
+        <result property="email" column="email"/>
+        <result property="address" resultMap="Address.addressResult"/>
+        <result property="phone" column="phone"/>
+        <result property="mainProblem" column="main_problem"/>
+        <result property="currentSickHistory" column="current_sick_history"/>
+        <result property="familySickHistory" column="family_sick_history"/>
+        <result property="diagnose" column="diagnose"/>
+        <result property="therapy" column="therapy"/>
+        <result property="inspect" column="inspect"/>
+        <result property="createdDate" column="createddate"/>
+    </resultMap>
+    
+    <resultMap class="java.util.HashMap" id="insertionResult">
+        <result property="id" columnIndex="1" />
+    </resultMap>
+    
+  
+    <select id="getAllpatient"  resultMap="patientResult">
+   
+        SELECT p.id, p.first_name, p.last_name, p.gender, p.email, p.age, p.phone, p.main_problem, p.current_sick_history,
+               p.family_sick_history, p.diagnose, p.therapy, p.inspect, p.createddate,
+               a.street_address, a.city, a.province, a.county, a.postal_code, a.patient_id
+        FROM patient p 
+        INNER JOIN address a ON p.id = a.patient_id
+        WHERE 1 = 1
+	      <isNotNull prepend=" AND " property="firstName">
+	         first_name = #firstName#
+	      </isNotNull>
+	      <isNotNull prepend=" AND " property="lastName">
+	         last_name = #lastName#
+	      </isNotNull>
+	      <isNotNull prepend=" AND " property="phone">
+	        phone = #phone#
+	      </isNotNull>
+	      ORDER BY p.createddate DESC
+	     LIMIT 20
+       
+ 
+    </select>
+    
+    <select id="getpatientByFirstName" resultMap="patientResult">
+    <![CDATA[
+        SELECT p.id, p.first_name, p.last_name, p.gender, p.email, p.age, p.phone, p.main_problem, p.current_sick_history,
+               p.family_sick_history, p.diagnose, p.therapy, p.inspect, p.createddate,
+               a.street_address, a.city, a.province, a.county, a.postal_code, a.patient_id
+        FROM patient p 
+        INNER JOIN address a ON p.id = a.patient_id
+        WHERE first_name = #firstName#
+    ]]>
+    </select>
+    
+    <select id="getpatientByLastName" resultMap="patientResult">
+    <![CDATA[
+        SELECT p.id, p.first_name, p.last_name, p.gender, p.email, p.age, p.phone, p.main_problem, p.current_sick_history,
+               p.family_sick_history, p.diagnose, p.therapy, p.inspect, p.createddate,
+               a.street_address, a.city, a.province, a.county, a.postal_code, a.patient_id
+        FROM patient p 
+        INNER JOIN address a ON p.id = a.patient_id
+        WHERE last_name = #lastName#
+    ]]>
+    </select>
+        
+    <select id="getpatientByPhone" resultMap="patientResult">
+    <![CDATA[
+        SELECT p.id, p.first_name, p.last_name, p.gender, p.email, p.age, p.phone, p.main_problem, p.current_sick_history,
+               p.family_sick_history, p.diagnose, p.therapy, p.inspect, p.createddate,
+               a.street_address, a.city, a.province, a.county, a.postal_code, a.patient_id
+        FROM patient p 
+        INNER JOIN address a ON p.id = a.patient_id
+        WHERE phone = #phone#
+    ]]>
+    </select>
+    
+    <select id="getpatientById" resultMap="patientResult">
+    <![CDATA[
+        SELECT p.id, p.first_name, p.last_name, p.gender, p.email, p.age, p.phone, p.main_problem, p.current_sick_history,
+               p.family_sick_history, p.diagnose, p.therapy, p.inspect, p.createddate,
+               a.street_address, a.city, a.province, a.county, a.postal_code, a.patient_id
+        FROM patient p 
+        INNER JOIN address a ON p.id = a.patient_id
+        WHERE p.id = #id#
+    ]]>
+    </select>
+    
+  
+    
+    <insert id="insertpatient" >
+      <![CDATA[
+	    INSERT INTO patient (first_name,  last_name, gender, age,  email, phone, main_problem,current_sick_history, family_sick_history, diagnose,  therapy,inspect,createddate )
+        VALUES (#firstName#, #lastName#, #gender#, #age#,#email#, #phone#, null, null, null, null ,null,null,now());
+	   ]]>
+    </insert>
+    
+       
+      <update id="updatepatient" parameterClass="patient">
+     <![CDATA[
+       UPDATE patient 
+       SET  first_name = #firstName#, 
+            last_name = #lastName#, 
+            gender = #gender#, 
+            email = #email#,
+            age = #age#, 
+            phone = #phone#, 
+            main_problem = #mainProblem#, 
+            current_sick_history = #currentSickHistory#,
+            family_sick_history = #familySickHistory#, 
+            diagnose = #diagnose#, 
+            therapy = #therapy#, 
+            inspect = #inspect#
+       WHERE id = #id#
+      ]]>
+    </update> 
+
+ 
+</sqlMap>

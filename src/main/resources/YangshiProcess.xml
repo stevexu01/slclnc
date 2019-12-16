@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="YangshiProcess">
+
+    <typeAlias alias="YangshiProcess" type="com.shengli.clinic.model.YangshiProcess"/>
+     <typeAlias alias="SubProcess" type="com.shengli.clinic.model.SubProcess"/>
+
+    <resultMap id="yangshiProcessResult" class="YangshiProcess">
+        <result property="id" column="id"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="finished" column="finished"/>
+        <result property="patientId" column="patient_id"/>
+        <result property="subProcesses" select="getSubProcessByProcessId" column="id" />
+        <result property="yangshiPrescriptionId" column="yangshi_prescription_id" />
+    </resultMap>
+    
+    <select id="getYangshiProByPrescriptionId" resultMap="yangshiProcessResult">
+        <![CDATA[
+        SELECT id, order_num, patient_id, finished, yangshi_prescription_id
+        FROM yangshi_process
+        WHERE yangshi_prescription_id = #prescriptionId#
+        ]]>
+    </select>
+
+    <select id="getYangshiProBypatientIdAndPrescId" resultMap="yangshiProcessResult">
+    <![CDATA[
+        SELECT id, order_num, patient_id, finished, yangshi_prescription_id
+        FROM yangshi_process
+        WHERE patient_id = #patientId# AND yangshi_prescription_id = #prescriptionId#
+    ]]>
+    </select>
+    
+ 
+                                       
+    <update id="updateYangshiProcesses" parameterClass="yangshiProcess">
+     <![CDATA[
+       UPDATE yangshi_process
+       SET finished = #finished#
+       WHERE id = #id#
+      ]]>
+    </update> 
+        
+    <insert id="insertYangshiProcesses" parameterClass="yangshiProcess">
+      <![CDATA[
+	    INSERT INTO yangshi_process (
+	      order_num, patient_id, finished, yangshi_prescription_id
+	    )VALUES (
+	      #orderNum#, #patientId#, 0, #yangshiPrescriptionId#
+	    )
+	   ]]>
+    </insert>
+    
+    <delete id="removeProcessByPrescriptionId">
+       <![CDATA[
+         DELETE FROM yangshi_process  WHERE yangshi_prescription_id = #prescriptionId#
+       ]]>
+    </delete>
+    
+    <delete id="removeProcessById">
+       <![CDATA[
+         DELETE FROM yangshi_process  WHERE id = #id#
+       ]]>
+    </delete>
+    
+    <select id="lastInsertId">
+         <![CDATA[
+            SELECT LAST_INSERT_ID();
+          ]]>
+    </select>
+    
+ 
+</sqlMap>

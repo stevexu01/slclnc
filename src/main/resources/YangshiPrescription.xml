@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="YangshiPrescription">
+                                                                         
+    <typeAlias alias="YangshiPrescription" type="com.shengli.clinic.model.YangshiPrescription"/>
+
+    <resultMap id="yangshiPrescriptionResult" class="YangshiPrescription">
+        <result property="id" column="id"/>
+        <result property="prescriptionText" column="prescription_text"/>
+        <result property="createdDate" column="created_date"/>
+        <result property="prescriptionName" column="prescription_name"/>
+    </resultMap>
+
+    <select id="getAllYangshiPrescriptions" resultMap="yangshiPrescriptionResult">
+	    <![CDATA[
+	        SELECT id, prescription_text, created_date, prescription_name
+	        FROM yangshi_prescription
+	    ]]>
+    </select>
+    
+    <insert id="insertYangshiPrescription" parameterClass="YangshiPrescription">
+      <![CDATA[
+	    INSERT INTO yangshi_prescription (
+	      prescription_text,
+	      created_date,
+	      prescription_name
+	    )VALUES (
+	      #prescriptionText#, now(), #prescriptionName# 
+	    )
+	   ]]>
+    </insert>
+    
+    <update id="updateYangshiPrescription" parameterClass="YangshiPrescription">
+     <![CDATA[
+       UPDATE yangshi_prescription 
+       SET prescription_text = #prescriptionText#, prescription_name = #prescriptionName#
+       WHERE id = #id#
+      ]]>
+    </update> 
+    
+     <delete id="removeYangshiPrescriptionById">
+       <![CDATA[
+         DELETE FROM yangshi_prescription  WHERE id = #prescriptionId#
+       ]]>
+    </delete>
+ 
+</sqlMap>

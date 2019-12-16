@@ -1,0 +1,88 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="templates/main.xhtml">
+	
+	
+	
+	
+	<ui:define name="content">
+		
+	<div class="container">	
+    <h:form id="form" enctype="#{empty encoding ? 'application/x-www-form-urlencoded' : encoding}">
+		
+	<h:messages showDetail="false" showSummary="true" styleClass="validateMessage" />
+	
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="row4_main">
+	   <tr><td><table align="center">
+			<tr>
+			  <td class="label">性别</td>
+			  <td align="left"><h:selectOneMenu value="#{patientBean.patient.gender}" class="nice_input" >
+                      <f:selectItem itemValue="男" itemLabel="男"/>
+                      <f:selectItem itemValue="女" itemLabel="女"/>
+               </h:selectOneMenu>
+              </td>
+			</tr>
+			<tr>
+				<td class="label">姓氏</td>
+				<td><h:inputText   class="nice_input" id="lastName" value="#{patientBean.patient.lastName}" required="true" requiredMessage="#{msg['lastname.required']}"/><font color="#99AFCC">*</font></td>
+			</tr>
+			<tr>
+				<td class="label">名字</td>
+				<td><h:inputText  class="nice_input" id="firstName" value="#{patientBean.patient.firstName}" required="true" requiredMessage="#{msg['firstname.required']}"/><font color="#99AFCC">*</font></td>
+			</tr>		
+			<tr>
+				<td class="label">省</td>
+				<td><h:inputText  class="nice_input" id="province" value="#{patientBean.address.province}" /><font color="#99AFCC">&#160;</font></td>
+			</tr>
+			<tr>
+				<td class="label">市</td>
+				<td><h:inputText class="nice_input" id="city" value="#{patientBean.address.city}" /><font color="#99AFCC">&#160;</font></td>
+			</tr>
+			<tr>
+				<td class="label">县</td>
+				<td><h:inputText  class="nice_input" id="county" value="#{patientBean.address.county}" /><font color="#99AFCC">&#160;</font></td>
+			</tr>
+			<tr>
+				<td class="label">地址</td>
+				<td><h:inputText  class="nice_input" id="address" value="#{patientBean.address.streetAddress}" /><font color="#99AFCC">&#160;</font></td>
+			</tr>	
+			<tr>
+				<td class="label">邮编</td>
+				<td><h:inputText   class="nice_input" id="postalCode" value="#{patientBean.address.postalCode}" /><font color="#99AFCC">&#160;</font> </td>
+			</tr>
+			<tr>
+				<td class="label">电话</td>
+				<td><h:inputText  class="nice_input" id="homePhone" value="#{patientBean.patient.phone}" /><font color="#99AFCC">&#160;</font></td>
+			</tr>
+			
+			<tr>
+				<td class="label">电子邮件</td>
+				<td><h:inputText  class="nice_input" id="email" value="#{patientBean.patient.email}" /><font color="#99AFCC">&#160;</font></td>
+			</tr>
+			<tr>
+				<td class="label">年龄</td>
+				<td><h:inputText  class="nice_input" id="age" value="#{patientBean.patient.age}" required="true" requiredMessage="#{msg['age.required']}"/><font color="#99AFCC">*</font></td>
+			</tr>
+			
+			<tr><td height="20"></td></tr>
+			
+			<tr>
+			    
+			    <td>
+			        <h:commandButton class="button"  id="backButton" action="#{patientSearchBean.getAllpatient}" value="回前页" />
+			    </td>
+			    <td><h:commandButton rendered="#{patientBean.action == 'Update'}" class="button"  id="updateButton" action="#{patientBean.updatepatient}" value="更新" />
+			        <h:commandButton rendered="#{patientBean.action == 'Create'}" class="button"  id="createButton" disabled="#{patientBean.created}" action="#{patientBean.createPatient}" value="提交" />
+			    </td>
+			</tr>
+           </table></td></tr>
+	    </table>
+
+		</h:form>
+		</div>
+	</ui:define>
+	
+
+</ui:composition>
+

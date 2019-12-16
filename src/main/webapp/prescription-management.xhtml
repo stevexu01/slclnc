@@ -1,0 +1,95 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="templates/main.xhtml">
+
+
+  <ui:define name="content">
+
+  <h:form id="form" enctype="#{empty encoding ? 'application/x-www-form-urlencoded' : encoding}">
+    
+  <table width="100%" border="0" align="center" >
+     <tr><td height="10"></td></tr>
+  </table>
+  
+   <h:messages showDetail="false" showSummary="true" styleClass="validateMessage" />
+  
+ <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" >
+    <tr>
+      <td>
+	  <table width="100%" border="0" align="center" >
+	     <tr><td height="10"></td></tr>
+	  </table>
+	  </td>
+    </tr>
+ 
+ 	  
+    <tr>
+       <td>
+         <table align="center">
+	      <tr>    
+	         <td>
+	            <h:inputText id="newYangshiTreat"  class="nice_input" value="#{prescriptionBean.newYangshiPrescription.prescriptionName}" />
+	         </td>
+	         <td><h:commandButton class="button"  id="addButton" action="#{prescriptionBean.addYangshi}" reRender="createSucess,updateSucess" value="加新方"  /></td>
+	       </tr>
+	     </table>		  
+       </td>
+    </tr> 
+    
+    <tr>
+       <td>
+	     <table width="100%" border="0" align="center" >
+	        <tr><td height="10"></td></tr>
+	     </table>
+      </td>
+    </tr> 
+    
+    <tr><td align="center">
+    <table width="40%" border="1">
+      <tr>
+           <td align="center" width="60%"  style="font-weight:bold"><h:outputText value="药 名" /></td>
+           <td>&#160;</td>
+       </tr>
+          <ui:repeat var="yangshiPrescription" value="#{prescriptionBean.yangshiPrescriptions}">
+
+       <tr>
+          <td align="center"><h:outputText value="#{yangshiPrescription.prescriptionName}"  rendered="#{!yangshiPrescription.editable}"/>
+             <h:inputText id="newName" value="#{yangshiPrescription.prescriptionName}" class="nice_input" rendered="#{yangshiPrescription.editable}"  required="true" requiredMessage="#{msg['prescription.name.required']}"/>
+          </td>
+           <td align="center"><h:commandLink class="link"  id="editButton"  rendered="#{!yangshiPrescription.editable}" action="#{prescriptionBean.edit}"   value="修改" >
+                 <f:param name="prescriptionId" value="#{yangshiPrescription.id}" />
+               </h:commandLink><h:outputText value="|" rendered="#{!yangshiPrescription.editable}" />
+               <h:commandLink class="link"  id="removeButton" rendered="#{!yangshiPrescription.editable}" action="#{prescriptionBean.remove}"   value="删除" >
+                 <f:param name="prescriptionId" value="#{yangshiPrescription.id}" />
+               </h:commandLink>
+               
+                <h:commandLink class="link"  id="recoverButton"  rendered="#{yangshiPrescription.editable}"  action="#{prescriptionBean.recover}" reRender="createSucess,updateSucess"   value="回原"  immediate="true">
+                <f:param name="prescriptionId" value="#{yangshiPrescription.id}" />
+               </h:commandLink><h:outputText value="|" rendered="#{yangshiPrescription.editable}" />
+               
+               <h:commandLink class="link"  id="modifyButton"  rendered="#{yangshiPrescription.editable}"  action="#{prescriptionBean.update}" reRender="createSucess,updateSucess"   value="保存" >
+                <f:param name="prescriptionId" value="#{yangshiPrescription.id}" />
+               </h:commandLink> 
+           
+           
+           </td>
+       </tr>
+    
+    </ui:repeat>
+    </table>
+    </td>
+    </tr>
+    
+</table>
+
+
+
+		
+		</h:form>
+
+	</ui:define>
+	
+
+</ui:composition>
+

@@ -1,0 +1,112 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="templates/main.xhtml">
+
+
+	<ui:define name="content">
+	
+
+		<h:form id="form" enctype="#{empty encoding ? 'application/x-www-form-urlencoded' : encoding}" >
+		
+		<table><td height="10"></td></table>
+		
+		<table align="center">
+		  <tr>
+		      <td><h:outputText class="label" value="姓氏"/>
+		      <h:inputText class="middle_input"  id="lastName" value="#{patientSearchBean.lastName}"/></td>
+		  
+		      <td><h:outputText class="label" value="名字"/>
+		      <h:inputText class="middle_input"  id="firstName" value="#{patientSearchBean.firstName}"/></td>
+		   
+		      <td><h:outputText class="label"  value="电话"/>
+		      <h:inputText  class="middle_input"  id="phone" value="#{patientSearchBean.phone}"/></td>
+		      <td align="right"> <h:commandButton id="searchButton" class="button" action="#{patientSearchBean.getAllpatient}" value="搜&#160;索" /></td>
+		   </tr>
+		   
+		
+		</table>
+	 
+		<hr/>
+		
+		
+		 <h:dataTable  var="patient" value="#{patientSearchBean.patients}"  styleClass="search" rowClasses="odd, even">
+
+            <h:column>
+				<f:facet name="header">
+					<h:outputText value="编号" />
+				</f:facet>
+				<h:commandLink id="viewpatient" action="#{patientBean.viewpatient}" >
+				   <h:outputText value="#{patient.id}" align="center">
+				        <f:convertNumber type="number" minIntegerDigits="3"/>
+				   </h:outputText>
+	                <f:param name="id" value="#{patient.id}" />
+                </h:commandLink>
+
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="姓氏" align="center"/>
+				</f:facet>
+				<h:commandLink id="diagnose" action="#{diagnoseBean.viewDiagonse}" value="#{patient.lastName}"  >
+	                <f:param name="id" value="#{patient.id}" />
+                </h:commandLink>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="名字" />
+				</f:facet>
+				<h:outputText value="#{patient.firstName}" align="center"/>
+			</h:column>
+			
+			
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="性别" />
+				</f:facet>
+				<h:outputText value="#{patient.gender}" align="center" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="年龄" />
+				</f:facet>
+				<h:outputText value="#{patient.age}" align="center" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="电话号码" />
+				</f:facet>
+				<h:outputText value="#{patient.phone}"  align="center"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="电子邮件" />
+				</f:facet>
+				<h:outputText value="#{patient.email}" align="center"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="初诊日期" />
+				</f:facet>
+				<h:outputText value="#{patient.createdDate}" align="center"><f:convertDateTime type="date" locale="zh" dateStyle="long"/></h:outputText> 
+			</h:column>
+						
+			
+		</h:dataTable>
+		
+	
+		
+		</h:form>
+
+	</ui:define>
+	
+
+</ui:composition>
+
