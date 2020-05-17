@@ -5,3 +5,6 @@ docker run -d -p 8080:8080 clinic:v2
 http://localhost:8080/index.jsp
 
 
+---------------
+AppEngine connect to Cloud SQL - https://cloud.google.com/sql/docs/mysql/connect-app-engine
+

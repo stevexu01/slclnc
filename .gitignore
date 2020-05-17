@@ -3,7 +3,6 @@ classes/
 bin/
 lib/
 .svn/
-doc/
 .idea/
 .mvn/
 .project

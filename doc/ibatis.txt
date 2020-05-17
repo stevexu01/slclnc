@@ -1,0 +1,44 @@
+import java.util.List;
+
+import org.springframework.orm.ibatis.SqlMapClientTemplate;
+import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
+
+public class JsrDaoImpl extends SqlMapClientDaoSupport implements JsrDao 
+{
+
+    @Override
+    public List<Jsr> selectAllJsrs() 
+    {
+        SqlMapClientTemplate template = getSqlMapClientTemplate();
+        return (List<Jsr>)template.queryForList("selectAllJsrs");
+    }
+
+    @Override
+    public Jsr selectJsrById(String jsrID)
+    {
+        SqlMapClientTemplate template = getSqlMapClientTemplate();
+        Object objectJsr = template.queryForObject("selectJsrById", jsrID);
+        return objectJsr instanceof Jsr ? ((Jsr)objectJsr) : null;
+    }
+
+    @Override
+    public void insertJsr(Jsr insertJsr)
+    {
+        SqlMapClientTemplate template = getSqlMapClientTemplate();
+        template.insert("insertJsr", insertJsr);	
+    }
+
+    @Override
+    public void deleteJsr(String jsrId) 
+    {
+        SqlMapClientTemplate template = getSqlMapClientTemplate();
+        template.delete("deleteJsr", jsrId);
+    }
+
+    @Override
+    public void updateJsr(Jsr jsrWithNewValues)
+    {
+        SqlMapClientTemplate template = getSqlMapClientTemplate();
+        template.update("updateJsr", jsrWithNewValues);
+    }
+}
