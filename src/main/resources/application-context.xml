@@ -20,7 +20,7 @@
                 <prop key="serverName">localhost</prop>
                 <prop key="user">root</prop>
                 <prop key="databaseName">clinic</prop>
-                <prop key="password">ginger</prop>
+                <prop key="password"></prop>
             </props>
         </property>
         <property name="poolName" value="springHikariCP" />

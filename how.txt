@@ -8,3 +8,19 @@ http://localhost:8080/index.jsp
 ---------------
 AppEngine connect to Cloud SQL - https://cloud.google.com/sql/docs/mysql/connect-app-engine
 
+---------------
+Local run with Maven:
+
+> cd <project_root_directory>>
+> mvn jetty:run
+
+or, within IDE:
+configure maven run as:
+1) working directory: <project_root_directory>
+    for example: /Users/stevexu/projects/my/slclnc
+2) command line: jetty:run
+
+
+
+
+
