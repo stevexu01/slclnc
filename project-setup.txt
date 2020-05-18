@@ -3,7 +3,7 @@
 
 2. Setup:
 	(1) Download and install MySQL database
-	https://dev.mysql.com/downloads/mysql/
+	https://dev.mysql.com/downloads/installer/
 	** set mysql root password to "ginger"
 
 	(2) Start MySQL server
@@ -32,10 +32,17 @@
 
 
 	(5) Start application
-	 ** from command line:
+	 ** from command line in windows prompt:
 	 > mvn clean jetty:run
 
-	 ** from IDE
+	 ** command line from IDE(Eclipse)
+	 1) Ctrl + Alt + T
+	 2) mvn clean jetty:run
+	 
+	 ** configure maven run from IDE
+	Run -> Run Configuration -> New -> Maven
+	set goal to "jetty:run"
+
 
 	(6) Access application:
 	http://localhost:8080
