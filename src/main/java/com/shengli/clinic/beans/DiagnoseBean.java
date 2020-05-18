@@ -8,10 +8,11 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
+import com.shengli.clinic.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.mysql.jdbc.StringUtils;
+//import com.mysql.jdbc.StringUtils;
 import com.shengli.clinic.model.Address;
 import com.shengli.clinic.model.GeneralPrescription;
 import com.shengli.clinic.model.Patient;

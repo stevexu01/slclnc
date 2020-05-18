@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
-import com.mysql.jdbc.StringUtils;
+import com.shengli.clinic.util.StringUtils;
 import com.shengli.clinic.model.YangshiPrescription;
 
 import com.shengli.clinic.services.DiagnoseService;

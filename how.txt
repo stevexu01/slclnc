@@ -40,7 +40,7 @@ Detail instruction:
 	slclnc > mysql -uroot
 	mysql > create database clinic
 	mysql > use clinic
-	mysql > source <your_workspace>/slclnc/doc/dbcreate.sql
+	mysql > source <your_workspace>/slclnc/doc/create-tables.sql
 
 
 	(5) Start application
@@ -52,8 +52,14 @@ Detail instruction:
 	(6) Access application:
 	http://localhost:8080
 
+-----------------
+update connector:
 
-
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.13</version>
+</dependency>
 
 
 

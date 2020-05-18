@@ -13,7 +13,7 @@
         <property name="maximumPoolSize" value="10" />
         <!--<property name="minimumPoolSize" value="2" />-->
         <property name="dataSourceClassName"
-                  value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" />
+                  value="com.mysql.cj.jdbc.MysqlDataSource" />
         <property name="dataSourceProperties">
             <props>
                 <prop key="portNumber">3306</prop>
@@ -21,6 +21,7 @@
                 <prop key="user">root</prop>
                 <prop key="databaseName">clinic</prop>
                 <prop key="password">ginger</prop>
+                <prop key="characterEncoding">utf-8</prop>
             </props>
         </property>
         <property name="poolName" value="springHikariCP" />

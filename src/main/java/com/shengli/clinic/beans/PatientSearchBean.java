@@ -8,7 +8,7 @@ import javax.faces.bean.RequestScoped;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.mysql.jdbc.StringUtils;
+import com.shengli.clinic.util.StringUtils;
 import com.shengli.clinic.model.Patient;
 import com.shengli.clinic.services.PatientService;
 
