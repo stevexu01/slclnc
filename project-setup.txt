@@ -1,35 +1,14 @@
-PS C:\dev\projects\shengli\clinic> docker image build -t clinic:v2 .
-
-docker run -d -p 8080:8080 clinic:v2
-
-http://localhost:8080/index.jsp
-
-
----------------
-AppEngine connect to Cloud SQL - https://cloud.google.com/sql/docs/mysql/connect-app-engine
-
----------------
-Local run with Maven:
-
-> cd <project_root_directory>>
-> mvn jetty:run
-
-or, within IDE:
-configure maven run as:
-1) working directory: <project_root_directory>
-    for example: /Users/stevexu/projects/my/slclnc
-2) command line: jetty:run
-
-----------------
-Detail instruction:
-
 1. Project in Github:
 	https://github.com/stevexu01/slclnc.git
 
 2. Setup:
 	(1) Download and install MySQL database
+	https://dev.mysql.com/downloads/windows/installer/5.7.html
+	install instruction - https://blog.zedfox.us/install-mysql-5-7-windows-10/
+	** set mysql root password to "ginger"
 
 	(2) Start MySQL server
+	In above instruction.
 
 	(3) Clone source code:
 		mkdir <your_workspace>
@@ -51,9 +30,4 @@ Detail instruction:
 
 	(6) Access application:
 	http://localhost:8080
-
-
-
-
-
 
